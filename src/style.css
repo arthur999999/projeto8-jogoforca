@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.root {
+    margin: 0 auto;
+}
+
+.forca {
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.forca img {
+    width: 360px;
+}
+
+.keys {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    width: 800px;
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
+.key {
+    display: flex;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(153, 204, 204);
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font: 400 25px 'Bungee Spice', sans-serif;
+    cursor: pointer;
+}
+
+.button {
+    display: flex;
+    position: absolute;
+    margin-top: 45px;
+    margin-right: 160px;
+    width: 170px;
+    border-radius: 5px;
+    height: 50px;
+    right: 0;
+    top: 0;
+    align-items: center;
+    font: 400 14px 'Bungee Spice';
+    justify-content: center;
+    background-color: rgb(27, 211, 27);
+    cursor: pointer;
+}
+
+.word {
+    display: flex;
+    position: absolute;
+    top: 0;
+    font: 400 70px 'Bungee Spice', sans-serif;
+    right: 0;
+    margin-top: 360px;
+    margin-right: 160px;
+}
