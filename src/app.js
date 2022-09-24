@@ -12,12 +12,13 @@ let countLevel= 1
 
 export default function App () {
 
-    const keysAlf = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W','X', 'Y', 'Z']
+    const alfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W','X', 'Y', 'Z']
     console.log(palavras)
 
     palavras.sort(randomizer)
 
     console.log(palavras)
+    const underlineList = []
 
     function randomizer() { 
         return Math.random() - 0.5; 
@@ -27,11 +28,13 @@ export default function App () {
     const [selectWord, setSelecdWord] = React.useState(palavras[0])
 
     const selectWordReal = []
+    
 
     for(let i=0; i < selectWord.length; i++){
         selectWordReal.push(selectWord[i]) 
+        
     }
-
+    const [hideenWord, setHiddenWord] = React.useState('_')
     const [source, setSource] = React.useState("./assets/forca0.png")
 
     console.log(selectWordReal)
@@ -69,15 +72,21 @@ export default function App () {
         
     }
 
+    const [corrects, setCorrects] = React.useState ([])
+
+    function correctCar(m) {
+        setCorrects([...corrects, m])
+    }
+
    
 
     return (
         <>
         
         <div className="box1">
-        <div className="button" onClick={()=>setSelecdWord(palavras[1])}  >Escolher Palavra</div>
+        <div className="button" onClick={()=> setSelecdWord(palavras[1])}  >Escolher Palavra</div>
         <div className="word">
-            {selectWordReal.map((caracter, index)=> <div key={index} className="caracter">_</div>)}
+            {selectWordReal.map((caracter, index)=> <div key={index} className="caracter">{corrects.includes(caracter)? caracter : '_'}</div>)}
         </div>
             <div className="forca">
                 <img src={source} alt="" />
@@ -85,7 +94,7 @@ export default function App () {
         </div>
         <div className="box2">
             <div className="keys">
-                {keysAlf.map((m, index) => <div key={index} onClick={()=> selectWordReal.includes(m.toLowerCase())? console.log('verdade') : nextLevel()}   className="key">{m}</div> )}
+                {alfabeto.map((m, index) => <div key={index} onClick={()=> selectWordReal.includes(m.toLowerCase())? correctCar(m.toLowerCase()) : nextLevel()}   className="key">{m}</div> )}
             </div>
         </div>
         </>
