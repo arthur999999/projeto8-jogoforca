@@ -63,8 +63,11 @@ export default function App () {
                 break;
             case 6 :
                 setSource("./assets/forca6.png")
-                countLevel ++
+                countLevel = 1
+                setKeyUserd([...alfabeto, 'button'])
+                setCorrects([...corrects, ...selectWordReal])
                 break;
+                
             default: 
                 
         }
@@ -114,6 +117,12 @@ export default function App () {
             case 'ê' :
                 setCorrects([...corrects, 'e', 'é', 'ê'])
                 break;
+            case 'c' :
+                setCorrects([...corrects, 'c', 'ç'])
+                break;
+            case 'ç' :
+                setCorrects([...corrects, 'c', 'ç'])
+                break;
                 
             default:
                 setCorrects([...corrects, m])
@@ -130,6 +139,7 @@ export default function App () {
         setCorrects([])
         setKeyUserd(['newWord'])
         setSource("./assets/forca0.png")
+        countLevel = 1
     }
 
     function guessGuess () {
@@ -204,6 +214,17 @@ export default function App () {
                 }
                 else if(selectWordReal.includes('ê')){
                     correctCar('ê')
+                }
+                 else {
+                    nextLevel()
+                }
+                break;
+            case 'C' :
+                if(selectWordReal.includes('c')){
+                    correctCar('c')
+                }
+                else if(selectWordReal.includes('ç')){
+                    correctCar('ç')
                 }
                  else {
                     nextLevel()
