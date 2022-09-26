@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap');
 
 * {
     box-sizing: border-box;
@@ -36,8 +36,9 @@
     margin-right: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    font: 400 25px 'Bungee Spice', sans-serif;
+    font: 400 25px 'Roboto', sans-serif;
     cursor: pointer;
+    border: none;
 }
 
 .button {
@@ -51,18 +52,64 @@
     right: 0;
     top: 0;
     align-items: center;
-    font: 400 14px 'Bungee Spice';
+    font: 500 18px 'Roboto';
     justify-content: center;
-    background-color: rgb(27, 211, 27);
+    background-color: rgb(58, 175, 58);
     cursor: pointer;
+    color: white;
+    border: none;
 }
 
 .word {
     display: flex;
     position: absolute;
     top: 0;
-    font: 400 70px 'Bungee Spice', sans-serif;
+    font: 400 70px 'Roboto', sans-serif;
     right: 0;
     margin-top: 360px;
     margin-right: 160px;
+}
+
+.key:disabled {
+    background: #ccc;
+    cursor: default;
+}
+
+.box2 {
+    display: flex;
+}
+
+.input {
+    margin-top: 50px;
+    font: 400 14px 'Roboto', sans-serif;
+    
+}
+
+.input input {
+    outline: none;
+    border: 1px solid gray;
+    height: 30px;
+}
+
+.input button {
+    border: 2px solid blue;
+    border-radius: 1px;
+    font-size: 18px;
+    color: blue;
+    background-color: aquamarine;
+    height: 30px;
+}
+
+.input button:disabled {
+    background: #ccc;
+    cursor: default;
+}
+
+.button:disabled {
+    background: #ccc;
+    cursor: default;
+}
+
+.disabled  {
+    display: none;
 }

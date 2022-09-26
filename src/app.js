@@ -105,6 +105,15 @@ export default function App () {
             case 'ú' :
                 setCorrects([...corrects, 'u', 'ú'])
                 break;
+            case 'e' :
+                setCorrects([...corrects, 'e', 'é', 'ê'])
+                break;
+            case 'é' :
+                setCorrects([...corrects, 'e', 'é', 'ê'])
+                break;
+            case 'ê' :
+                setCorrects([...corrects, 'e', 'é', 'ê'])
+                break;
                 
             default:
                 setCorrects([...corrects, m])
@@ -113,12 +122,28 @@ export default function App () {
         console.log(corrects)
     }
 
+    const [keyUsed, setKeyUserd] = React.useState ([...alfabeto, 'button', 'word'])
+    const [guessWhat, setGuessWhat] = React.useState ('')
+
     function newWord () {
         setSelecdWord(palavras[1])
         setCorrects([])
+        setKeyUserd(['newWord'])
+        setSource("./assets/forca0.png")
+    }
+
+    function guessGuess () {
+        if(selectWord === guessWhat.toLowerCase()){
+            setCorrects([...corrects, ...selectWordReal])
+        }else{
+            setKeyUserd([...alfabeto, 'button'])
+            setCorrects([...corrects, ...selectWordReal])
+            setSource("./assets/forca6.png")
+        }
     }
 
     function compareKey (m) {
+        setKeyUserd([...keyUsed, m])
         switch (m) {
             case 'O' :
                 if(selectWordReal.includes('o')){
@@ -170,6 +195,20 @@ export default function App () {
                     nextLevel()
                 }
                 break;
+            case 'E' :
+                if(selectWordReal.includes('e')){
+                    correctCar('e')
+                }
+                else if(selectWordReal.includes('é')){
+                    correctCar('é')
+                }
+                else if(selectWordReal.includes('ê')){
+                    correctCar('ê')
+                }
+                 else {
+                    nextLevel()
+                }
+                break;
             
             default :
                 selectWordReal.includes(m.toLowerCase())? correctCar(m.toLowerCase()) : nextLevel()
@@ -182,9 +221,9 @@ export default function App () {
         <>
         
         <div className="box1">
-        <div className="button" onClick={()=> newWord() }  >Escolher Palavra</div>
+        <button className="button" onClick={()=> newWord() } disabled={keyUsed.includes('newWord')? "disabled" : ""} >Escolher Palavra</button>
         <div className="word">
-            {selectWordReal.map((caracter, index)=> <div key={index} className="caracter">{corrects.includes(caracter)? caracter : '_'}</div>)}
+            {selectWordReal.map((caracter, index)=> <div key={index} className={keyUsed.includes('word')? "disabled" : ""} >{corrects.includes(caracter)? caracter : '_'} </div>)}
         </div>
             <div className="forca">
                 <img src={source} alt="" />
@@ -192,7 +231,12 @@ export default function App () {
         </div>
         <div className="box2">
             <div className="keys">
-                {alfabeto.map((m, index) => <div key={index} onClick={()=> compareKey (m) }   className="key">{m}</div> )}
+                {alfabeto.map((m, index) => <button key={index} onClick={()=> compareKey (m)  }  className="key" disabled={keyUsed.includes(m)? "disabled" : ""} >{m}</button>  )}
+            </div>
+            <div className="input">
+                <p>Já sei a palavra!</p>
+                <input type="text" value={guessWhat} onChange={ e => setGuessWhat(e.target.value)}></input>
+                <button onClick={()=>guessGuess()} disabled={keyUsed.includes('button')? "disabled" : ""} >Chutar!</button>
             </div>
         </div>
         </>
