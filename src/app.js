@@ -36,7 +36,7 @@ export default function App () {
     }
     const [source, setSource] = React.useState("./assets/forca0.png")
 
-    console.log(selectWordReal)
+    
     
     function nextLevel () {
         switch (countLevel){
@@ -66,6 +66,7 @@ export default function App () {
                 countLevel = 1
                 setKeyUserd([...alfabeto, 'button'])
                 setCorrects([...corrects, ...selectWordReal])
+                setWordClass('red')
                 break;
                 
             default: 
@@ -128,7 +129,18 @@ export default function App () {
                 setCorrects([...corrects, m])
         }
         
-        console.log(corrects)
+        
+        let includeCount = 1
+        for(let j = 0; j < selectWordReal.length; j++){
+            if(corrects.includes(selectWordReal[j])){
+                includeCount++
+            }
+        }
+        if(includeCount === selectWordReal.length) {
+            setWordClass('green')
+            setKeyUserd([...alfabeto, 'button'])
+        }
+        
     }
 
     const [keyUsed, setKeyUserd] = React.useState ([...alfabeto, 'button', 'word'])
@@ -140,17 +152,22 @@ export default function App () {
         setKeyUserd(['newWord'])
         setSource("./assets/forca0.png")
         countLevel = 1
+        setWordClass('')
     }
 
     function guessGuess () {
         if(selectWord === guessWhat.toLowerCase()){
             setCorrects([...corrects, ...selectWordReal])
+            setKeyUserd([...alfabeto, 'button'])
+            setWordClass('green')
         }else{
             setKeyUserd([...alfabeto, 'button'])
             setCorrects([...corrects, ...selectWordReal])
             setSource("./assets/forca6.png")
+            setWordClass('red')
         }
     }
+
 
     function compareKey (m) {
         setKeyUserd([...keyUsed, m])
@@ -236,6 +253,11 @@ export default function App () {
         }
         
     }
+
+    const [wordClass, setWordClass] = React.useState('disabled')
+    
+
+    
    
 
     return (
@@ -244,7 +266,7 @@ export default function App () {
         <div className="box1">
         <button className="button" onClick={()=> newWord() } disabled={keyUsed.includes('newWord')? "disabled" : ""} >Escolher Palavra</button>
         <div className="word">
-            {selectWordReal.map((caracter, index)=> <div key={index} className={keyUsed.includes('word')? "disabled" : ""} >{corrects.includes(caracter)? caracter : '_'} </div>)}
+            {selectWordReal.map((caracter, index)=> <div key={index} className={wordClass} >{corrects.includes(caracter)? caracter : '_'} </div>)}
         </div>
             <div className="forca">
                 <img src={source} alt="" />

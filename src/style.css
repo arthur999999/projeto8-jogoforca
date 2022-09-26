@@ -110,6 +110,14 @@
     cursor: default;
 }
 
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}
+
 .disabled  {
     display: none;
 }
