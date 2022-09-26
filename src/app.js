@@ -264,22 +264,22 @@ export default function App () {
         <>
         
         <div className="box1">
-        <button className="button" onClick={()=> newWord() } disabled={keyUsed.includes('newWord')? "disabled" : ""} >Escolher Palavra</button>
+        <button className="button" data-identifier="choose-word" onClick={()=> newWord() } disabled={keyUsed.includes('newWord')? "disabled" : ""} >Escolher Palavra</button>
         <div className="word">
-            {selectWordReal.map((caracter, index)=> <div key={index} className={wordClass} >{corrects.includes(caracter)? caracter : '_'} </div>)}
+            {selectWordReal.map((caracter, index)=> <div key={index} className={wordClass} data-identifier="word" >{corrects.includes(caracter)? caracter : '_'} </div>)}
         </div>
             <div className="forca">
-                <img src={source} alt="" />
+                <img data-identifier="game-image" src={source} alt="" />
             </div>
         </div>
         <div className="box2">
             <div className="keys">
-                {alfabeto.map((m, index) => <button key={index} onClick={()=> compareKey (m)  }  className="key" disabled={keyUsed.includes(m)? "disabled" : ""} >{m}</button>  )}
+                {alfabeto.map((m, index) => <button key={index}  onClick={()=> compareKey (m)  }  className="key" data-identifier="letter"  disabled={keyUsed.includes(m)? "disabled" : ""}  >{m}</button>  )}
             </div>
             <div className="input">
                 <p>Já sei a palavra!</p>
-                <input type="text" value={guessWhat} onChange={ e => setGuessWhat(e.target.value)}></input>
-                <button onClick={()=>guessGuess()} disabled={keyUsed.includes('button')? "disabled" : ""} >Chutar!</button>
+                <input type="text" data-identifier="type-guess"  value={guessWhat} onChange={ e => setGuessWhat(e.target.value)}></input>
+                <button onClick={()=>guessGuess()} data-identifier="guess-button" disabled={keyUsed.includes('button')? "disabled" : ""} >Chutar!</button>
             </div>
         </div>
         </>
